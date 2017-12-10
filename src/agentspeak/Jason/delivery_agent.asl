@@ -53,8 +53,7 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	  arrived(X, Y, DestX, DestY)
 	<-
 	.print("I am arrived to the collect point and the supply was collected.");
-	!collectSupply;
-	!goToDeliveryPoint.
+	!collectSupply.
 	
 +!chooseAction 
 	: currentStatus(Status) & 
@@ -89,7 +88,7 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 +!goToCollectPoint : buildingPose("COLLECT_POINT", _, DestX, DestY) & currentRequest(_,Supply)
 	<-
 	.print("I am going to the collect point to collect ", Supply);	
-	!go_to(DestX, DestY).
+	.go_to(DestX, DestY).
 
 +!findNewRequestToDo : availableRequests(Destination,Supply)
 	<-
@@ -109,14 +108,14 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	?currentRequest(Destination, _);
 	?buildingPose(_, Destination, DestX, DestY);
 	
-	-+currentStatus("GOING_TO_DELIVERY_POINT");
 	.print("Going to deliver the supply");
-	!go_to(DestX, DestY).
+	.go_to(DestX, DestY).
 
 +!collectSupply : true
 	<-
 	?currentRequest(_,Supply);
-	.print(Supply, " collected.").
+	.print(Supply, " collected.");
+	-+currentStatus("GOING_TO_DELIVERY_POINT").
 
 +!deliverSupply : true
 	<-
@@ -131,19 +130,14 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	.broadcast(tell, requestCompleted(Destination, Supply));
 		
 	.print("Supply delivered").
-	
-+!go_to(X, Y) : true
-	<-
-	.print("I need to go to X: ", X, " Y: ", Y, " but I do not know how I can do it.").
-	
+		
 +acceptingRequest(Destination,Supply) [source(Source)] : 
 	Source \== self & 
 	currentRequest(CurrentDestination, _) &
 	Destination == CurrentDestination
 	<-
 	.my_name(MyName);
-	.eval(HasPriority, MyName < Source);
-	if(not HasPriority){
+	if(MyName > Source){
 		.print("The agent ", Source, " (with higher priority) accepted the request to deliver ", Supply, " to ", Destination);
 		.abolish(availableRequests(Destination, Supply));
 		.abolish(acceptingRequest(Destination,Supply));
