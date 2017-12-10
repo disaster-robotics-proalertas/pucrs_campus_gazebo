@@ -43,32 +43,32 @@ deliverable("").
 	.print("The new number to choose the supply to be requested is ", NewNumber);
 	!chooseRequest(NewNumber).
 	
-+!chooseRequest(Number) : Number <= 0.18
++!chooseRequest(Number) : Number <= 0.17
 	<-
 	.print("I will request medicines");
 	!requestSupply("MEDICINES").
 	
-+!chooseRequest(Number) : Number > 0.18 & Number <= 0.36
++!chooseRequest(Number) : Number > 0.17 & Number <= 0.34
 	<-
 	.print("I will request food");
 	!requestSupply("FOOD").
 	
-+!chooseRequest(Number) : Number > 0.36 & Number <= 0.54
++!chooseRequest(Number) : Number > 0.34 & Number <= 0.51
 	<-
 	.print("I will request water");
 	!requestSupply("WATER").
 
-+!chooseRequest(Number) : Number > 0.54 & Number <= 0.72
++!chooseRequest(Number) : Number > 0.51 & Number <= 0.68
 	<-
 	.print("I will request blankets");
 	!requestSupply("BLANKETS").
 	
-+!chooseRequest(Number) : Number > 0.72 & Number <= 0.9
++!chooseRequest(Number) : Number > 0.68 & Number <= 0.85
 	<-
 	.print("I will request curatives");
 	!requestSupply("CURATIVES").
 	
-+!chooseRequest(Number) : Number > 0.9
++!chooseRequest(Number) : Number > 0.85
 	<-
 	.print("I will request a victim transportation");
 	!requestTransportation.

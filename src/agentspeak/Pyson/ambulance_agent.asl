@@ -10,11 +10,17 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 
 /* Plans */
 
++!start : not pose(_,_) 
+	<- 
+	+pose(0,0);
+	!start.
+
 +!start : true 
 	<- 
 	.my_name(Name);
 	.print("I am the agent ", Name, ". I am entering in the simulation.");
 	
+	+pose(0,0);
 	?pose(X, Y);
 	.print("My initial pose is X: ", X, " Y: ", Y);
 	
@@ -27,16 +33,20 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	+buildingPose(Type, Source, X, Y);
 	.print("The building ", Source, " told me its position is X: ", X, " Y: ", Y).
 
-+newTransportationRequest [source(Destination)] : true
++newTransportationRequest [source(Requestor)] : true
 	<-
-	.print("A new victim transportation request is available from ", Destination);
+	.print("A new victim transportation request is available from ", Requestor);
 	.abolish(newTransportationRequest);
-	+availableRequests(Destination).
+	+availableRequests(Requestor).
 
 +execute(PosX, PosY)
 	<-
 	.print("Updating my pose to X: ", PosX, " - Y: ", PosY);
-	-+pose(PosX, PosY);
+	
+	?pose(CurX, CurY);
+	-pose(CurX, CurY);
+	+pose(PosX, PosY);
+
 	.abolish(execute(PosX, PosY));
 	!chooseAction.
 
@@ -49,21 +59,22 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	: currentStatus(Status) & 
 	  Status == "GOING_TO_RESCUE" & 
 	  pose(X, Y) & 
-	  buildingPose("RESCUE_POINT", _, DestX, DestY) &
+	  currentRequest(Requestor) & 
+	  buildingPose(_, Requestor, DestX, DestY) & 
 	  arrived(X, Y, DestX, DestY)
 	<-
 	.print("I am arrived to the rescue point and I am getting the victim.");
-	!getVictim;
-	!goToHospital.
+	!getVictim.
 	
 +!chooseAction 
 	: currentStatus(Status) & 
 	  Status == "GOING_TO_RESCUE" & 
 	  pose(X, Y) & 
-	  buildingPose("RESCUE_POINT", _, DestX, DestY) & 
+	  currentRequest(Requestor) & 
+	  buildingPose(_, Requestor, DestX, DestY) & 
 	  not arrived(X, Y, DestX, DestY)
 	<-
-      .print("I am still going to the rescue point.").
+      .print("I am still going to the rescue point ", Requestor).
       
 +!chooseAction 
 	: currentStatus(Status) & 
@@ -82,42 +93,36 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	buildingPose("HOSPITAL", _, DestX, DestY) &
 	not arrived(X, Y, DestX, DestY)
 	<-
-	.print("I am still going to the hospital.").
+	.print("I am still going to the hospital.");
+	!goToHospital.
 
-+!acceptRequest : availableRequests(Destination)
++!acceptRequest : availableRequests(Requestor)
 	<-
-	+currentRequest(Destination);
-	-availableRequests(Destination);
-	.broadcast(tell, acceptingTransportationRequest(Destination));
+	+currentRequest(Requestor);
+	-availableRequests(Requestor);
+	.broadcast(tell, acceptingTransportationRequest(Requestor));
 	.print("Notifying the another agents that I am accepting the request to get the victim to the hospital").
 
 +!acceptRequest : true
 	<-
 	.print("No more requests available. Waiting for a new one.").
 
-+!goToRescuePoint : buildingPose("RESCUE_POINT", _, DestX, DestY) & availableRequests(Destination)
++!goToRescuePoint : currentRequest(Requestor) & buildingPose(_, Requestor, DestX, DestY)
 	<-
-	-+currentStatus("GOING_TO_RESCUE");
-	!go_to(DestX, DestY);
+	-availableRequests(Requestor);
+	!updateStatus("GOING_TO_RESCUE");
+	.go_to(DestX, DestY, X);
 	.print("I am going to the rescue point to collect").
-	
-+!goToRescuePoint : true
-	<-
-	.print("I do not need to move to a rescue point.").
 
-+!goToHospital : true
++!goToHospital : buildingPose("HOSPITAL", _, DestX, DestY)
 	<-
-	?buildingPose("HOSPITAL", _, DestX, DestY);
-	
-	-+currentStatus("GOING_TO_HOSPITAL");
 	.print("Going to hospital.");
-	!go_to(DestX, DestY).
+	.go_to(DestX, DestY, X).
 
 +!findNewRequestToDo : availableRequests(Requestor)
 	<-
 	+currentRequest(Requestor);
-	-+currentStatus("GOING_TO_RESCUE");
-	-availableRequests(Requestor);
+	!updateStatus("GOING_TO_RESCUE");
 	.broadcast(tell, acceptingTransportationRequest(Requestor));
 	.print("Notifying the another agents that I am accepting the victim transportation to ", Requestor);
 	!goToRescuePoint.
@@ -125,22 +130,18 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 +!findNewRequestToDo : true
 	<-
 	.print("No more requests available. Waiting for a new one.").
-
-+!go_to(X, Y) : true
-	<-
-	.print("I need to go to X: ", X, " Y: ", Y, " but I do not know how I can do it.").
 	
 +!getVictim : true
 	<-
-	.print("Getting the victim.").
+	.print("Getting the victim.");
+	!updateStatus("GOING_TO_HOSPITAL").
 	
-+!deliverVictim : true
++!deliverVictim : currentRequest(Requestor)
 	<-
-	?currentRequest(Requestor);
 	.abolish(newTransportationRequest);
 	-availableRequests(Requestor);
-	-+currentRequest("");
-	-+currentStatus("AVAILABLE");
+	!updateCurrentRequest("");
+	!updateStatus("AVAILABLE");
 	
 	.broadcast(tell, transportationRequestCompleted(Requestor));
 		
@@ -152,13 +153,12 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	Requestor == CurrentDestination
 	<-
 	.my_name(MyName);
-	.eval(HasPriority, MyName < Source);
-	if(not HasPriority){
+	if(MyName > Source){
 		.print("The agent ", Source, " (with higher priority) accepted the request to rescue the victim from ", Requestor);
 		.abolish(availableRequests(Requestor));
 		.abolish(acceptingTransportationRequest(Requestor));
 		-currentRequest(Requestor);
-		-+currentStatus("AVAILABLE");
+		!updateStatus("AVAILABLE");
 	};
 	-acceptingTransportationRequest(Requestor).
 	
@@ -178,3 +178,15 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 +newSupplyRequest(Supply) [source(Source)] : true
 	<-
 	.print("I am an ambulance. Ignoring this supply request from ", Source). 
+
++!updateStatus(Status) : true
+	<-
+	?currentStatus(CurrentStatus);
+	-currentStatus(CurrentStatus);
+	+currentStatus(Status).
+
++!updateCurrentRequest(Request) : true
+	<-
+	?currentRequest(CurrentRequest);
+	-currentRequest(CurrentRequest);
+	+currentRequest(Request).
