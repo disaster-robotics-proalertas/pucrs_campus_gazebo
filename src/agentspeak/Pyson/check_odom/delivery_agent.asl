@@ -32,15 +32,11 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	+buildingPose(Type, Source, X, Y);
 	.print("The building ", Source, " told me its position is X: ", X, " Y: ", Y).
 		
-+newSupplyRequest(Supply, Qtde) [source(Destination)] : loadCapacity(Capacity) & Qtde <= Capacity 
++newSupplyRequest(Supply) [source(Destination)] : true
 	<-
 	.print("A new request is available from ", Destination, " to delivery ", Supply);
-	+availableRequests(Destination, Supply);
-	.abolish(newSupplyRequest(Supply, Qtde)).
-
-+newSupplyRequest(Supply, Qtde) : loadCapacity(Capacity)
-	<-
-	.print("I cannot accept this request due to my low load capacity.").
+	.abolish(newSupplyRequest(Supply));
+	+availableRequests(Destination, Supply).
 
 +execute(PosX, PosY)
 	<-

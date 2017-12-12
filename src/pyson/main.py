@@ -4,6 +4,12 @@ import pyson
 import pyson.runtime
 import pyson.stdlib
 import time
+import rospy
+from nav_msgs.msg import Odometry
+import collections
+import time
+
+from agent_publisher import AgentPublisher
 
 import os
 
@@ -13,6 +19,8 @@ actions = pyson.Actions(pyson.stdlib.actions)
 # With this action the will be possible to ask the ROS to move the robot.
 @actions.add_function(".go_to", (int,int, ))
 def go_to(x,y):
+	agent = AgentPublisher(x, y)
+	agent.moveToGoal()
 	return 1
 
 # Here the pyson instante its environment
@@ -83,33 +91,34 @@ pyson.runtime.add_belief(term, rescuePoint4, intention)
 
 term = pyson.Literal("pose", (18, 19))
 pyson.runtime.add_belief(term, hospital, intention)
+running = False
 
-term = pyson.Literal("loadCapacity", [100])
-pyson.runtime.add_belief(term, deliveryAgent1, intention)
+def execute():
+	print "execute"
 
-term = pyson.Literal("loadCapacity", [75])
-pyson.runtime.add_belief(term, deliveryAgent2, intention)
+	def callback(data):
+		posX = data.pose.pose.position.x
+		posY = data.pose.pose.position.y
+		Point = collections.namedtuple('Position', ['x', 'y'])
+		position = Point(posX, posY)
+		#print position
+
+		# Here we are adding the "execute" literal to the belief base of the agents
+		term = pyson.Literal("execute", (position.x, position.y))
+		intention = pyson.runtime.Intention()
+		deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
+		env.run()
+		time.sleep(3)
+		#return position
+
+	
+	rospy.init_node('check_odometry')     #change this for the robot node name
+	odom_sub = rospy.Subscriber('/odom', Odometry, callback)
+	rospy.spin()
 
 # Here is where the simulation is started
 if __name__ == "__main__":
 	# Here we are calling an initial execution of the environment
 	env.run()
+	execute()
 
-	# In this example we will call the environment execution every second inside a loop
-	count = 0
-	time.sleep(1)
-	while(count < 100):
-		env.run()
-
-		# Here we are adding the "execute" literal to the belief base of the agents
-		# A similar approach can be used to provide the position received from the ROS to the agent
-		term = pyson.Literal("execute", (count, count + 1))
-		intention = pyson.runtime.Intention()
-
-		deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-		deliveryAgent2.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-		ambulance1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-		ambulance2.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-
-		time.sleep(1)
-		count = count + 1

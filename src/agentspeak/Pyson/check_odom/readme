@@ -32,6 +32,6 @@ In this folder are placed the plans for all the agents that will be part of the 
 		When a new request is available, the agent notifies the other agents with the same type (ambulance or delivery agent) that it will attend the request. The agent with minor name has priority to acept the request, e.g., the agent ambulance1 has priority about the agent ambulance2 or the agent deliveryAgent1 has priority about the agent deliveryAgent2.
 		When a request is completed, all agents with the same type are notified and must remove the request from their belief base.
 
-All the building agents described here must be instantiated in the .py file with a initial belief "pose(X,Y)", where must be provide their pose. The delivery agents must be instantiate in the .py file with a initial belief "loadCapacity", where must be provided their capacity to transport supplies. 
+All of the agents described here must be instantiated in the .py file with a initial belief "pose(X,Y)", where must be provide their pose. 
 
 The example.py file has an example of use of Pyson with the agents modeled in this scenario.
