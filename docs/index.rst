@@ -28,7 +28,7 @@ Summary
    source/campus/index
    source/robots/index
    source/jason/index
-   source/agentspeak-py/index
+   source/pyson/index
    source/agentspeak/index
    source/contributors/index
 
