@@ -84,6 +84,12 @@ pyson.runtime.add_belief(term, rescuePoint4, intention)
 term = pyson.Literal("pose", (18, 19))
 pyson.runtime.add_belief(term, hospital, intention)
 
+term = pyson.Literal("loadCapacity", [100])
+pyson.runtime.add_belief(term, deliveryAgent1, intention)
+
+term = pyson.Literal("loadCapacity", [75])
+pyson.runtime.add_belief(term, deliveryAgent2, intention)
+
 # Here is where the simulation is started
 if __name__ == "__main__":
 	# Here we are calling an initial execution of the environment

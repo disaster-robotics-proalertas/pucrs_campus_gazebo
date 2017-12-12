@@ -76,8 +76,9 @@ deliverable("").
 +!requestSupply(Supply) : true
 	<-
 	-+deliverable(Supply);
-	.print("Requesting ", Supply);
-	.broadcast(tell, newSupplyRequest(Supply));
+	.random(Qtde);
+	.print("Requesting ", Qtde, " items of ", Supply);
+	.broadcast(tell, newSupplyRequest(Supply, Qtde * 100));
 	.print("Changing my status to WAITING");
 	-+currentStatus("WAITING").
 	
