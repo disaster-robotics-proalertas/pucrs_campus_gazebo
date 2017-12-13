@@ -36,6 +36,7 @@ This command will install all the Pyson's dependencies.
 
 2. Download the Grizzly robot
 -------- 
+
 For this work, we use `Grizzly simulator <https://github.com/g/grizzly_simulator>`_. You need to download the source from GitHub and place it in *src* in your *catkin_ws*. After that, run:
 	catkin_make
 	
@@ -47,7 +48,7 @@ And
 3. Add the launch file from to Grizzly
 -------- 
 
-We created an odometry node to get the robot position. You need to replace the file at catkin_ws/src/grizzly_simulator/grizzly_gazebo/launch/base_gazebo.launch for the file at /launch/Grizzly/base_gazebo.launch.
+We created an odometry node to get the robot position. You need to replace the file at *catkin_ws/src/grizzly_simulator/grizzly_gazebo/launch/base_gazebo.launch* for the file at */launch/Grizzly/base_gazebo.launch*.
 The file on this repository already contains the node to get the positions information:
 
 	<node pkg="check_odom" type="check_odometry" name="agent_subscriber.py" output="screen" >
@@ -58,7 +59,6 @@ Where:
 - The type is the name of the node described at our script
 - The name is the name of our script
 - Output is the way the information is printed
-
 
 After you replace the file, run
 	catkin_make
