@@ -47,7 +47,6 @@ When a request is completed, all agents with the same type are notified and must
 
 Below an example of a mas2j file:
 
-```
 	MAS Scenario {
 
 		infrastructure: Centralised
@@ -62,4 +61,3 @@ Below an example of a mas2j file:
 		aslSourcePath:
 			"src/asl";
 	}
-```
