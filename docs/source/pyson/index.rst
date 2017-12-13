@@ -38,6 +38,7 @@ This command will install all the Pyson's dependencies.
 -------- 
 
 For this work, we use `Grizzly simulator <https://github.com/g/grizzly_simulator>`_. You need to download the source from GitHub and place it in *src* in your *catkin_ws*. After that, run:
+
 	catkin_make
 	
 And
@@ -61,19 +62,21 @@ Where:
 - Output is the way the information is printed
 
 After you replace the file, run
+
 	catkin_make
 	
 	
 4. Copy the package node
 -------- 
 
-In this repository, inside src/agentspeak/Pyson there is a folder named *check_odom*. You need to copy this folder to your *catkin_ws*.
+In this repository, inside src/pyson/ there is a folder named *check_odom*. You need to copy this folder to your *catkin_ws*.
 
 
 5. Lauch Grizzly
 -------- 
 
 To launch Grizzly, run:
+
 	sudo apt-get update
 	
 	sudo apt-get install ros-indigo-grizzly-simulator ros-indigo-grizzly-desktop ros-indigo-grizzly-navigation
@@ -85,6 +88,7 @@ To launch Grizzly, run:
 -------- 
 
 Open other terminal and run:
+
 	roscore
 
 In other terminar, enter the folde *check_odom* you just copied to your catkin_ws and run:

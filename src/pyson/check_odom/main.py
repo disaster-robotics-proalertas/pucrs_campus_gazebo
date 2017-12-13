@@ -91,7 +91,6 @@ pyson.runtime.add_belief(term, rescuePoint4, intention)
 
 term = pyson.Literal("pose", (18, 19))
 pyson.runtime.add_belief(term, hospital, intention)
-running = False
 
 def execute():
 	print "execute"
@@ -101,7 +100,6 @@ def execute():
 		posY = data.pose.pose.position.y
 		Point = collections.namedtuple('Position', ['x', 'y'])
 		position = Point(posX, posY)
-		#print position
 
 		# Here we are adding the "execute" literal to the belief base of the agents
 		term = pyson.Literal("execute", (position.x, position.y))
@@ -109,10 +107,9 @@ def execute():
 		deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
 		env.run()
 		time.sleep(3)
-		#return position
 
 	
-	rospy.init_node('check_odometry')     #change this for the robot node name
+	rospy.init_node('check_odometry')    
 	odom_sub = rospy.Subscriber('/odom', Odometry, callback)
 	rospy.spin()
 

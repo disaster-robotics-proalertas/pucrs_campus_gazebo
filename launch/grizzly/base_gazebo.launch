@@ -45,7 +45,7 @@ robot model in Gazebo
     respawn="false" output="screen" />
 
   <!-- start robot state publisher -->
-  <node pkg="check_odom" type="check_odometry" name="agent_subscriber.py" output="screen" >
+  <node pkg="check_odom" type="check_odometry" name="main.py" output="screen" >
   
   </node>
   <!-- start robot state publisher -->
