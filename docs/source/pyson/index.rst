@@ -75,7 +75,9 @@ In this repository, inside src/agentspeak/Pyson there is a folder named *check_o
 
 To launch Grizzly, run:
 	sudo apt-get update
+	
 	sudo apt-get install ros-indigo-grizzly-simulator ros-indigo-grizzly-desktop ros-indigo-grizzly-navigation
+	
 	roslaunch grizzly_gazebo grizzly_empty_world.launch
 	
 
