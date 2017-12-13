@@ -48,18 +48,18 @@ When a request is completed, all agents with the same type are notified and must
 Below an example of a mas2j file:
 
 ```
-MAS Scenario {
+	MAS Scenario {
 
-	infrastructure: Centralised
+		infrastructure: Centralised
 
-	agents:
-		collectPoint1 collect_point [beliefs="pose(7,8)"];
-		rescuePoint1 rescue_point [beliefs="pose(10,11)"];
-		hospital1 hospital [beliefs="pose(18,19)"];
-		deliveryAgent1 delivery_agent [beliefs="loadCapacity(100)"];
-		ambulanceAgent1 ambulance_agent [beliefs="pose(0,0)"];
+		agents:
+			collectPoint1 collect_point [beliefs="pose(7,8)"];
+			rescuePoint1 rescue_point [beliefs="pose(10,11)"];
+			hospital1 hospital [beliefs="pose(18,19)"];
+			deliveryAgent1 delivery_agent [beliefs="loadCapacity(100)"];
+			ambulanceAgent1 ambulance_agent [beliefs="pose(0,0)"];
 		
-	aslSourcePath:
-		"src/asl";
-}
+		aslSourcePath:
+			"src/asl";
+	}
 ```
