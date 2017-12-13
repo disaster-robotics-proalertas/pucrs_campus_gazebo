@@ -52,7 +52,7 @@ And
 We created an odometry node to get the robot position. You need to replace the file at *catkin_ws/src/grizzly_simulator/grizzly_gazebo/launch/base_gazebo.launch* for the file at */launch/Grizzly/base_gazebo.launch*.
 The file on this repository already contains the node to get the positions information:
 
-	<node pkg="check_odom" type="check_odometry" name="agent_subscriber.py" output="screen" >
+	<node pkg="check_odom" type="check_odometry" name="main.py" output="screen" >
 
 Where: 
 
