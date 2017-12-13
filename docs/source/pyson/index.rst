@@ -80,6 +80,7 @@ To launch Grizzly, run:
 	
 
 6. Run Pyson
+-------- 
 
 Open other terminal and run:
 	roscore
