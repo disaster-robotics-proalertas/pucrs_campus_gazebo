@@ -10,7 +10,7 @@ Building agents
 This class of agents has three agent types: *collect point*, *rescue point* and *hospital*.
 			
 1. Rescue Point: this agent will be responsible to request supplies to its victims or request a transportation of a victim to the hospital. When the system is started, this agent will request immediately a new item (a supply or a victim transportation). To determine which item should be requested, an aleatory number from 0 to 1 is generated, as below:
-			
+
 	- 0 to 0.17: Medicines;
 	- 0.17 to 0.34: Food;
 	- 0.34 to 0.51: Water;
@@ -42,7 +42,7 @@ When a new request is available, the agent notifies the other agents with the sa
 
 When a request is completed, all agents with the same type are notified and must remove the request from their belief base.
 
-**Important:** all the agents described here must be instantiated in the .py file with a initial belief "pose(X,Y)", where must be provide their pose. The delivery agents must be instantiate in the .py file with a initial belief "loadCapacity", where must be provided their capacity to transport supplies. 
+**Important:** all the building agents described here must be instantiated in the .py file with a initial belief "pose(X,Y)", where must be provided their pose. The delivery agents must be instantiate in the .py file with a initial belief "loadCapacity(Capacity)", where must be provided their capacity to transport supplies. 
 
 To run the example in this scenario, after installing Pyson, inside this folder, open a terminal and run:
 
