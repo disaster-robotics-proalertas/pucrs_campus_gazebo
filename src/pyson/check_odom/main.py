@@ -8,6 +8,7 @@ import rospy
 from nav_msgs.msg import Odometry
 import collections
 import time
+from pyson import pyson_str
 
 from agent_publisher import AgentPublisher
 
@@ -17,10 +18,9 @@ actions = pyson.Actions(pyson.stdlib.actions)
 
 # Here is the custom action go_to. 
 # With this action the will be possible to ask the ROS to move the robot.
-@actions.add_function(".go_to", (int,int, ))
-def go_to(x,y):
-	agent = AgentPublisher(x, y)
-	agent.moveToGoal()
+@actions.add_function(".go_to", (int,int, pyson_str))
+def go_to(x,y, name):
+	agent = AgentPublisher(x, y, name)
 	return 1
 
 # Here the pyson instante its environment
@@ -31,10 +31,10 @@ env = pyson.runtime.Environment()
 
 # In this example we are instantiating a new agent with the delivery_agent.asl file to the deliveryAgent variable.
 with open(os.path.join(os.path.dirname(__file__), "delivery_agent.asl")) as source:
-    deliveryAgent1 = env.build_agent(source, actions, name="deliveryAgent1")
+    deliveryAgent1 = env.build_agent(source, actions, name="/robot1")
 
 with open(os.path.join(os.path.dirname(__file__), "delivery_agent.asl")) as source:
-    deliveryAgent2 = env.build_agent(source, actions, name="deliveryAgent2")
+    deliveryAgent2 = env.build_agent(source, actions, name="/robot2")
 
 with open(os.path.join(os.path.dirname(__file__), "collect_point.asl")) as source:
     collectPoint1 = env.build_agent(source, pyson.stdlib.actions, name="collectPoint1")
@@ -94,24 +94,16 @@ pyson.runtime.add_belief(term, hospital, intention)
 
 def execute():
 	print "execute"
-
-	def callback(data):
-		posX = data.pose.pose.position.x
-		posY = data.pose.pose.position.y
-		Point = collections.namedtuple('Position', ['x', 'y'])
-		position = Point(posX, posY)
-
 		# Here we are adding the "execute" literal to the belief base of the agents
-		term = pyson.Literal("execute", (position.x, position.y))
-		intention = pyson.runtime.Intention()
-		deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-		env.run()
-		time.sleep(3)
+	term = pyson.Literal("execute", (1, 1))
+	intention = pyson.runtime.Intention()
+	deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
+	env.run()
 
-	
-	rospy.init_node('check_odometry')    
-	odom_sub = rospy.Subscriber('/odom', Odometry, callback)
-	rospy.spin()
+	term = pyson.Literal("execute", (5, 6))
+	intention = pyson.runtime.Intention()
+	deliveryAgent2.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
+	env.run()
 
 # Here is where the simulation is started
 if __name__ == "__main__":

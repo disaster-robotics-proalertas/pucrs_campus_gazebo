@@ -96,8 +96,9 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 		
 +!goToCollectPoint : buildingPose("COLLECT_POINT", _, DestX, DestY) & currentRequest(_,Supply)
 	<-
-	.print("I am going to the collect point to collect ", Supply);	
-	.go_to(DestX, DestY, X).
+	.print("I am going to the collect point to collect ", Supply);
+	.my_name(MyName);	
+	.go_to(DestX, DestY, MyName, X).
 
 +!findNewRequestToDo : availableRequests(Destination,Supply)
 	<-
@@ -120,7 +121,8 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	?buildingPose(_, Destination, DestX, DestY);
 	
 	.print("Going to deliver the supply");
-	.go_to(DestX, DestY, X).
+	.my_name(MyName);	
+	.go_to(DestX, DestY, MyName, X).
 
 +!collectSupply : true
 	<-

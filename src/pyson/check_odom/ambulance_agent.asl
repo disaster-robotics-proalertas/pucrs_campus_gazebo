@@ -111,13 +111,15 @@ arrived(CurrentX, CurrentY, DestX, DestY) :- CurrentX == DestX & CurrentY == Des
 	<-
 	-availableRequests(Requestor);
 	!updateStatus("GOING_TO_RESCUE");
-	.go_to(DestX, DestY, X);
+	.my_name(MyName);	
+	.go_to(DestX, DestY, MyName, X);
 	.print("I am going to the rescue point to collect").
 
 +!goToHospital : buildingPose("HOSPITAL", _, DestX, DestY)
 	<-
 	.print("Going to hospital.");
-	.go_to(DestX, DestY, X).
+	.my_name(MyName);	
+	.go_to(DestX, DestY, MyName, X).
 
 +!findNewRequestToDo : availableRequests(Requestor)
 	<-
