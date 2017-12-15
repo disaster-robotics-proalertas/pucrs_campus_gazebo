@@ -31,52 +31,17 @@ To change the agent belief, instantiate a new intention and a new term with the 
 	env.run()
 
 
-Agent Subscriber
--------------
-
-This is the responsible for getting the robot position. The node *check_odometry* sends the position back to the callback and
-already inform Pyson interface to alter the agent's belief.
-
-	def execute():
-		def callback(data):
-			posX = data.pose.pose.position.x
-
-			posY = data.pose.pose.position.y
-
-			Point = collections.namedtuple('Position', ['x', 'y'])
-
-			position = Point(posX, posY)
-
-		
-			term = pyson.Literal("execute", (position.x, position.y))
-
-			intention = pyson.runtime.Intention()
-
-			deliveryAgent1.call(pyson.Trigger.addition, pyson.GoalType.belief, term, intention)
-
-			env.run()
-
-	
-	rospy.init_node('check_odometry')  
-
-	odom_sub = rospy.Subscriber('/odom', Odometry, callback)
-
-	rospy.spin()
-
-
 Agent Publisher
 ---------------
 
 This is the responsible for sending the information of where to go for the robot. The *go_to* function receives this infomatation from the AgentSpeak.
 
-	@actions.add_function(".go_to", (int,int, ))
+	@actions.add_function(".go_to", (int,int, pyson_str))
 
-	def go_to(x,y):
+	def go_to(x,y,name):
 
-		agent = AgentPublisher(x, y)
+		agent = AgentPublisher(x, y, name)
 
-		agent.moveToGoal()
-		
 		return 1
 
 

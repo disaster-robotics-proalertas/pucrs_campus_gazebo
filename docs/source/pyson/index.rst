@@ -16,7 +16,7 @@ And should follow this steps:
 
 1. Install Pyson
 2. Download the Grizzly robot
-3. Add the launch file from to Grizzly
+3. Add the launch files from to Grizzly
 4. Copy the package node
 5. Lauch Grizzly
 6. Run Pyson
@@ -61,6 +61,8 @@ Where:
 - The name is the name of our script
 - Output is the way the information is printed
 
+For the example, we launched two robots. So, you also need to replace the file at *catkin_ws/src/grizzly_simulator/grizzly_gazebo/launch/grizzly.launch* for the file at */launch/Grizzly/grizzly.launch*.
+
 After you replace the file, run
 
 	catkin_make
@@ -91,7 +93,7 @@ Open other terminal and run:
 
 	roscore
 
-In other terminar, enter the folde *check_odom* you just copied to your catkin_ws and run:
+In other terminar, enter the folder *check_odom* you just copied to your catkin_ws and run:
 
 	python main.py
 
