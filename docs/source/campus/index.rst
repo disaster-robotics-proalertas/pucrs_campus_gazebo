@@ -43,7 +43,7 @@ Save the changes
 3. 3D Map Creation
 --------
 
-Access the website *http://osm2world.org/* to download the `OSM2world <http://osm2world.org/>_` application.
+Access the website *http://osm2world.org/* to download the `OSM2world <http://osm2world.org/>`_ application.
 
 Open an application with the command: 
 	
@@ -57,7 +57,8 @@ Export the file to the object format (*.obj*).
 4. Conversion from *.obj* format to *.stl* format.
 --------
 
-Run the command: *http://www.openscenegraph.org/index.php/documentation/guides/user-guides/55-osgconv*
+Documentation: *http://www.openscenegraph.org/index.php/documentation/guides/user-guides/55-osgconv*
+Run the command: 
 
 	$ osgconv map_pucrs.obj map_pucrs.stl
 
@@ -69,7 +70,7 @@ Run the command:
 
 	$ gazebo to load the empty environment.
 
-Press **Ctrl + M** or go to the Template Editor.
+Press **Ctrl + M** or go to the **Template Editor**.
 
 Click **Add Custom Shapes**.
 
@@ -77,7 +78,7 @@ Select the *.stl* extension file.
 
 Save the template.
 
-Close the Template Editor.
+Close the **Template Editor**.
 
 Save the world file.
 
