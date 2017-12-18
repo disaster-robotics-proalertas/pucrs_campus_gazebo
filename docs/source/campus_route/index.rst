@@ -87,8 +87,11 @@ Create the *.yaml* file inside the *osm_planner/test* folder with the attributes
 
 Example:
 	target_lon: -51.1746618   # longitude of the destination
+
 	target_lat: -30.0585084   # destination's latitude
+
 	source_lon: -51.1754576   # longitude of origin
+
 	source_lat: -30.0586203   # source latitude
 
 
@@ -134,6 +137,7 @@ Run the command
 After loading the environment, press **Enter** to start the trajectory of the robot.
 
 
-You will see a 2d map with only the streets and the robot traversing the smallest path from the source to the target.
+
+You will see a 2D map with only the streets and the robot traversing the smallest path from the source to the target.
 
 
