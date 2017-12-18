@@ -17,17 +17,17 @@ To run the example we created, you need:
 
 Go to the website `Open Street Map <http://www.openstreetmap.org/>`_.
 
-Click the Export button at the top of the screen.
+Click the **Export** button at the top of the screen.
 
 Fill in the latitude and longitude coordinate range (scroll through the coordinate fields by pressing a Tab key to view an area on the map).
 
-Click the Export button  the left side of the screen (the file extension will be .osm).
+Click the **Export** button  the left side of the screen (the file extension will be *.osm*).
 
 
 2. Map editing
 --------
 
-Visit the site *https://josm.openstreetmap.de/wiki/Download* to download the 'JOSM <https://josm.openstreetmap.de/wiki/Download>_' application *josm-tested.jar*.
+Visit the site *https://josm.openstreetmap.de/wiki/Download* to download the `JOSM <https://josm.openstreetmap.de/wiki/Download>_` application *josm-tested.jar*.
 
 Open an application with the command: 
 
@@ -43,7 +43,7 @@ Save the changes
 3. 3D Map Creation
 --------
 
-Access the website *http://osm2world.org/* to download the 'OSM2world <http://osm2world.org/>_' application.
+Access the website *http://osm2world.org/* to download the `OSM2world <http://osm2world.org/>_` application.
 
 Open an application with the command: 
 	
@@ -51,7 +51,7 @@ Open an application with the command:
 
 Check out the changes performed in the previous step.
 
-Export the file to the object format (.obj).
+Export the file to the object format (*.obj*).
 
 
 4. Conversion from *.obj* format to *.stl* format.
@@ -69,11 +69,11 @@ Run the command:
 
 	$ gazebo to load the empty environment.
 
-Press Ctrl + M or go to the Template Editor.
+Press **Ctrl + M** or go to the Template Editor.
 
-Click Add Custom Shapes.
+Click **Add Custom Shapes**.
 
-Select the .stl extension file.
+Select the *.stl* extension file.
 
 Save the template.
 
