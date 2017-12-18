@@ -8,7 +8,7 @@ Creation of the PUCRS Campus Scenario in the Gazebo
 
 To run the example we created, you need:
 
-1. Ubuntu 14.04 with `Kinect <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_ distribution installed (ros-kinetic-desktop-full)
+1. Ubuntu 16 with `Kinect <http://wiki.ros.org/kinetic/Installation/Ubuntu>`_ distribution installed (ros-kinetic-desktop-full)
 2. Python
 
 
@@ -58,6 +58,7 @@ Export the file to the object format (*.obj*).
 --------
 
 Documentation: *http://www.openscenegraph.org/index.php/documentation/guides/user-guides/55-osgconv*
+
 Run the command: 
 
 	$ osgconv map_pucrs.obj map_pucrs.stl
