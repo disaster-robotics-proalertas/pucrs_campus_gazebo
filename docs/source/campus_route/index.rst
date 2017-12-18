@@ -10,7 +10,7 @@ To run the example we created, you need:
 2. Python
 
 
-1. `MichalDoris/osm_planner <https://github.com/MichalDobis/osm_planner>_` repository clone
+1. `MichalDoris/osm_planner <https://github.com/MichalDobis/osm_planner>`_ repository clone
 --------
 
 Make the repository clone with the command: 
@@ -47,6 +47,7 @@ Change the **robot_base_frame** parameter from *'base_link'* to *'map'*
 
 
 4. Extracting the map of the selected area
+--------
 
 Go to the website `Open Street Map <http://www.openstreetmap.org/>`_.
 
@@ -60,7 +61,7 @@ Click the **Export** button  the left side of the screen (the file extension wil
 5. Map editing
 --------
 
-Visit the site *https://josm.openstreetmap.de/wiki/Download* to download the `JOSM <https://josm.openstreetmap.de/wiki/Download>_` application *josm-tested.jar*.
+Visit the site *https://josm.openstreetmap.de/wiki/Download* to download the `JOSM <https://josm.openstreetmap.de/wiki/Download>`_ application *josm-tested.jar*.
 
 Open an application with the command: 
 
@@ -80,6 +81,7 @@ Insert the *.osm* file into the **osm_example** folder
 
 
 7. Creating the Route File
+--------
 
 Create the *.yaml* file inside the *osm_planner/test* folder with the attributes **target_lon**, **target_lat**, **source_lon**, and **source_lat**
 
@@ -91,6 +93,7 @@ Example:
 
 
 8. Creating the new *.launch* plan file
+--------
 
 Add content below to the new file
 
@@ -112,6 +115,7 @@ Add content below to the new file
 
 
 9. Change of obstacle detection
+--------
 
 Open the **osm_planner/src/navigation_example.cpp** file
 
@@ -121,6 +125,7 @@ Recompile the project (step 2).
 
 
 10. Executing the application
+--------
 
 Run the command 
 
