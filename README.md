@@ -3,12 +3,12 @@ The campus of PUCRS University and multiple robots modeled with Gazebo
 
 Documentation at: docs/
 
-Participants:
+#### Participants:
 
-Daniele Pinheiro
-Debora Cristina Engelmann 
-Vinicius Lafourcade
-Vagner Macedo Martins
-Túlio Basegio 
+- Daniele Pinheiro
+- Debora Cristina Engelmann 
+- Vinicius Lafourcade
+- Vagner Macedo Martins
+- Túlio Basegio 
  
 
