@@ -1,7 +1,14 @@
 # pucrs_campus_gazebo
 The campus of PUCRS University and multiple robots modeled with Gazebo
 
-this repo must be a ROS package, describing all the depedencies such that one can clone this environment and reproduce the given examples.
+Documentation at: docs/
 
+Participants:
+
+Daniele Pinheiro
+Debora Cristina Engelmann 
+Vinicius Lafourcade
+Vagner Macedo Martins
+Túlio Basegio 
  
 
