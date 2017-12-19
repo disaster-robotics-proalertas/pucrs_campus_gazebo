@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="**/*.asl" kind="src" path="src/agt"/>
 	<classpathentry excluding="*.ptl" kind="src" path="src/int"/>
 	<classpathentry excluding="*.xml" kind="src" path="src/org"/>
+	<classpathentry kind="src" path="src/env"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JaCaMo"/>
 	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/jackson-annotations-2.9.2.jar"/>
 	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/jackson-core-2.9.2.jar"/>
@@ -16,5 +18,7 @@
 	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/websocket-api-9.4.7.v20170914.jar"/>
 	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/websocket-client-9.4.7.v20170914.jar"/>
 	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/websocket-common-9.4.7.v20170914.jar"/>
+	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/eis-0.5.0-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/tebas/Downloads/rosbridge/eis-0.5.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
