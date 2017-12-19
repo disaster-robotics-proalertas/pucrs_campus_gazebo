@@ -19,7 +19,17 @@ Go to the website `Open Street Map <http://www.openstreetmap.org/>`_.
 
 Click the **Export** button at the top of the screen.
 
-Fill in the latitude and longitude coordinate range (scroll through the coordinate fields by pressing a Tab key to view an area on the map).
+Fill in the latitude and longitude coordinate range (scroll through the coordinate fields by pressing a **Tab** key to view an area on the map).
+
+Example (EPSG:4326 - WGS84):
+
+	left latitude = -51.1839
+
+	right latitude = -51.1635
+
+	upper longitude = -30.0505
+
+	lower longitude = -30.0615
 
 Click the **Export** button  the left side of the screen (the file extension will be *.osm*).
 
