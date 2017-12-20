@@ -7,15 +7,15 @@ Welcome to PUCRS Campus on Gazebo
 About the Campus
 -----------------
 
-place here a nice screenshot of the campus on Gazebo + some robots
+
 
 .. image:: ./source/images/campus.png
     :align: center
 
 
-talk a little bit about the purpose of this document.
+Place here some robots talk a little bit about the purpose of this document.
 
-show some youtube videos demonstrating its usage.
+Show some youtube videos demonstrating its usage.
 
 
 Summary
