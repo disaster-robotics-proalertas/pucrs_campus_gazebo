@@ -4,9 +4,9 @@ LSA Contributors
 ========================
  
 The list of contributors to this document.
-
-	* @Guilher Marques
-
-	* @Desiree Santos
-
-	* `@Alexandre Amory <https://amamory.github.io/>`_
+	
+	* Daniele Pinheiro
+	* Debora Cristina Engelmann 
+	* Vinicius Lafourcade
+	* Vagner Macedo Martins
+	* Túlio Basegio 
