@@ -13,7 +13,7 @@ About the Campus
     :width: 48%
 
 .. image:: ./source/images/josm_campus.png
-    :width: 50%
+    :width: 49%
 
 
 
