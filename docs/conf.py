@@ -44,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'platypus_boat_doc'
+project = 'PUCRS Campus on Gazebo'
 copyright = '2017, Alexandre Amory'
 
 # The version info for the project you're documenting, acts as replacement for
