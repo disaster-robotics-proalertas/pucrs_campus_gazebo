@@ -10,7 +10,11 @@ About the Campus
 
 
 .. image:: ./source/images/campus.png
-    :align: center
+    :width: 50%
+
+
+.. image:: ./source/images/josm_campus.png
+    :width: 50%
 
 
 Place here some robots talk a little bit about the purpose of this document.
