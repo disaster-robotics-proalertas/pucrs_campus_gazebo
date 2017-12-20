@@ -13,14 +13,10 @@ About the Campus
     :width: 48%
     :margin-left: 2px
 
-    Map of the PUCRS campus in 3D
-
 
 .. image:: ./source/images/josm_campus.png
     :width: 50%
     :margin-right: 2px
-
-    Map of the PUCRS campus in OpenStreetMap
 
 
 
