@@ -24,7 +24,6 @@ Summary
 .. toctree::
    :maxdepth: 3
     
-   source/getting_started/index
    source/campus/index
    source/robots/index
    source/jason/index
@@ -32,15 +31,6 @@ Summary
    source/agentspeak/index
    source/contributors/index
 
-
-Disclaimer
-----------
-
-The purpose of this document is for the use of LSA group only, but we open it in case it can be usefull for someone else.
-Thus, we dont fill obliged to give any technical support, although we might help in some special situations.
-In addition, we are not associated with Platypus LLC. 
-
-Everything you find here is without absolutly no waranty and I'm not responsible for any inconveniences or issues that might occurs. 
 
 Feedback
 --------
