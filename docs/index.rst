@@ -10,7 +10,7 @@ About the Campus
 
 
 .. image:: ./source/images/campus.png
-    :width: 50%
+    :width: 48%
 
 
 .. image:: ./source/images/josm_campus.png
